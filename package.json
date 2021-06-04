@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "sharp": "^0.28.3"
+  },
+  "repository": {
+    "url": "https://github.com/nsars19/shrinkifier"
   }
 }
