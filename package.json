@@ -1,7 +1,7 @@
 {
   "name": "shrinkifier",
   "version": "1.0.0",
-  "description": "",
+  "description": "Compress images in a directory",
   "main": "src/shrinkifier.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
