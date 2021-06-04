@@ -3,7 +3,7 @@ const fs = require("fs");
 
 function shrinkifier(images, startPath, endPath, opts = {}) {
   if (!fs.existsSync(endPath)) {
-    fs.mkdirSync(endPath);
+    fs.mkdirSync(endPath, { recursive: true });
   }
 
   for (const image of images) {
