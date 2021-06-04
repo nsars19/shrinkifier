@@ -13,10 +13,10 @@ function shrinkifier(images, startPath, endPath, opts = {}) {
   }
 }
 
-exports.processFromDir = function processFromDir(
+exports.processFromDir = function processFromDir({
   start = "./src/temp/unprocessed/",
-  finish = "./src/temp/processed/"
-) {
+  finish = "./src/temp/processed/",
+}) {
   fs.readdir(start, (err, data) => {
     if (err) {
       console.error(err);
