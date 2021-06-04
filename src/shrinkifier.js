@@ -1,7 +1,19 @@
 const sharp = require("sharp");
 const fs = require("fs");
 
-module.exports = function processFromDir(
+function shrinkifier(images, startPath, endPath, opts = {}) {
+  if (!fs.existsSync(endPath)) {
+    fs.mkdirSync(endPath);
+  }
+
+  for (const image of images) {
+    sharp(startPath + image)
+      .jpeg({ mozjpeg: true })
+      .toFile(`${endPath}${image.split(".")[0]}.jpeg`);
+  }
+}
+
+exports.processFromDir = function processFromDir(
   start = "./src/temp/unprocessed/",
   finish = "./src/temp/processed/"
 ) {
@@ -14,14 +26,12 @@ module.exports = function processFromDir(
   });
 };
 
-function shrinkifier(images, startPath, endPath, opts = {}) {
-  if (!fs.existsSync(endPath)) {
-    fs.mkdirSync(endPath);
-  }
+exports.mkdir = (path) => {
+  if (!fs.existsSync(path)) fs.mkdirSync(path);
+};
 
-  for (const image of images) {
-    sharp(startPath + image)
-      .jpeg({ mozjpeg: true })
-      .toFile(`${endPath}${image.split(".")[0]}.jpeg`);
+exports.rmdir = (path) => {
+  if (fs.existsSync(path)) {
+    fs.rmSync(path, { recursive: true, force: true });
   }
-}
+};
